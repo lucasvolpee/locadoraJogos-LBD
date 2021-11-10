@@ -3,6 +3,7 @@
 use App\Http\Controllers\GameController;
 use App\Models\Plataform;
 use Illuminate\Support\Facades\Route;
+use App\Models\Game;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +27,20 @@ Route::get('/games/create', function() {
 });
 
 Route::get('/games/update/{id}', function($id) {
-    $game = Game::with('plataforms')->get();
+    $game           = Game::find($id);
+    $gamePlataforms = $game->plataforms->pluck('plataform_id')->toArray();
+
+    $plataforms = Plataform::all();
 
     return view('games_update', [
-        'game' => $games
+        'game'           => $game,
+        'gamePlataforms' => $gamePlataforms,
+        'plataforms'     => $plataforms
     ]);
 });
 
 Route::post('/games/create', [GameController::class, 'create']);
+
+Route::post('/games/update', [GameController::class, 'update']);
 
 Route::post('/games/delete/{id}', [GameController::class, 'delete']);

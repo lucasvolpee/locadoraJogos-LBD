@@ -41,4 +41,23 @@ class GameController extends Controller
 
         return redirect('/games');
     }
+
+    public function update(Request $request)
+    {
+        $game = Game::find($request->input('game_id'));
+
+        $newData = [
+            'game_title'        => $request->input('game_title'),
+            'developer'         => $request->input('developer'),
+            'distributor'       => $request->input('distributor'),
+            'game_release_date' => $request->input('game_release_date')
+        ];
+
+        $newGamePlataforms = $request->input('plataform');
+
+        $game->update($newData);
+        $game->plataforms()->sync($newGamePlataforms);
+
+        return redirect('/games');
+    }
 }
