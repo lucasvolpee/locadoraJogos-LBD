@@ -28,43 +28,28 @@
                 </div>
             </nav>
             <div class="card-body">
-                <a href="/games/create">
-                    <button type="button" class="btn btn-success">Cadastrar novos jogos</button>
+                <a href="/plataform/create">
+                    <button type="button" class="btn btn-success">Cadastrar novas plataformas</button>
                 </a>
             </div>
-            @if (empty($games))
-                <h3>Não jogos cadastrados ainda</h3>
+            @if (empty($plataforms))
+                <h3>Não existe plataformas</h3>
             @else
-                @foreach ($games as $game)
+                @foreach ($plataforms as $plataform)
                 <div class="card mt-3">
                     <div class="card-body">
-                        <h2> {{ $game->game_title }}</h2>
-                        <p>Dsenvolvedora: {{$game->developer}}</p>
-                        <p>Distribuidora: {{$game->distributor}}</p>
-                        @if(!is_null($game->plataforms))
-                            <h5>Disponivel nas seguintes plataformas:</h5>
-                            <div class="col-4">
-                                </ul class="col-3">
-                                    @foreach ($game->plataforms as $plataform)
-                                            <li class="list-group-item">{{ $plataform->plataform_name }}</li>
-                                    @endforeach
-                                <ul class="list-group list-group-flush">
-                            </div>
-                        @else
-                            <h5>Não está disponível em nenhuma plataforma</h5>
-                        @endif
-
+                        <h2> {{ $plataform->plataform_name }}</h2>
                         <div class="row">
                             <div class="mt-3 col-2">
-                                <a href="/games/update/{{ $game->game_id}}">
-                                    <button type="submit" class="btn btn-warning">Editar jogo</button>
+                                <a href="/plataform/update/{{ $plataform->plataform_id}}">
+                                    <button type="submit" class="btn btn-warning">Editar plataforma</button>
                                 </a>
                             </div>
                             <div class="mt-3 col-2">
-                                <form action="/games/delete/{{ $game->game_id}}" method="POST">
+                                <form action="/plataform/delete" method="POST">
                                 @csrf
-                                    <input type="hidden" name="game_id" value="{{ $game->game_id}} ">
-                                    <button type="submit" class="btn btn-danger">Deletar jogo</button>
+                                    <input type="hidden" name="plataform_id" value="{{ $plataform->plataform_id}} ">
+                                    <button type="submit" class="btn btn-danger">Deletar plataforma</button>
                                 </form>
                             </div>
                         </div>

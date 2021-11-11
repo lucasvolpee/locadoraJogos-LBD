@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\PlataformController;
 use App\Models\Plataform;
 use Illuminate\Support\Facades\Route;
 use App\Models\Game;
@@ -16,6 +17,7 @@ use App\Models\Game;
 |
 */
 
+//Games
 Route::get('/games', [GameController::class, 'index']);
 
 Route::get('/games/create', function() {
@@ -25,6 +27,7 @@ Route::get('/games/create', function() {
         'plataforms' => $plataforms
     ]);
 });
+
 
 Route::get('/games/update/{id}', function($id) {
     $game           = Game::find($id);
@@ -44,3 +47,15 @@ Route::post('/games/create', [GameController::class, 'create']);
 Route::post('/games/update', [GameController::class, 'update']);
 
 Route::post('/games/delete/{id}', [GameController::class, 'delete']);
+
+
+//Plataforms
+Route::get('/plataforms', [PlataformController::class, 'index']);
+
+Route::get('/plataform/create', function() {
+    return view('plataforms_create');
+});
+
+Route::post('/plataform/create', [PlataformController::class, 'create']);
+
+Route::post('/plataform/delete', [PlataformController::class, 'delete']);

@@ -29,36 +29,16 @@
             </nav>
             <div class="card">
                 <div class="card-body">
-                    <form action="/games/create" method="post">
+                    <form action="/plataform/create" method="post">
                     @csrf
                         <div class="mb-3">
-                            <label for="gameTitle" class="form-label">Titulo do jogo</label>
-                            <input type="text" class="form-control" id="gameTitle" placeholder="Nome do jogo" name="game_title">
+                            <label for="plataformName" class="form-label">Nome da plataforma</label>
+                            <input type="text" class="form-control" id="plataformName" placeholder="Nome da plataforma" name="plataform_name">
                         </div>
-                        <div class="mb-3">
-                            <label for="developer" class="form-label">Desenvolvedora do jogo</label>
-                            <input type="text" class="form-control" id="developer" placeholder="Desenvolvedora do jogo" name="developer">
-                        </div>
-                        <div class="mb-3">
-                            <label for="distributor" class="form-label">Distribuidora</label>
-                            <input type="text" class="form-control" id="distributor" placeholder="Distribuidora do jogo" name="distributor">
-                        </div>
-                        @if(!empty($plataforms))
-                            @foreach ($plataforms as $plataform)
-                                <input id="{{ $plataform->plataform_name }}" type="checkbox" name="plataform[]" value="{{ $plataform->plataform_id }}" >
-                                <label for="{{ $plataform->plataform_name }}" class="form-label">{{ $plataform->plataform_name }}</label>
-                                <br>
-                            @endforeach
-                        @endif
-                        <div class="mb-3">
-                            <label for="gameReleaseDate" class="form-label">Data de lançamento</label>
-                            <input type="date" class="form-control" id="gameReleaseDate" name="game_release_date">
-                        </div>
-                        <button type="submit" class="btn btn-success">Cadastrar jogo</button>
+                        <button type="submit" class="btn btn-success">Cadastrar plataforma</button>
                     </form>
                 </div>
             </div>
-
 
         </div>
 
