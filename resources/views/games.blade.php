@@ -32,8 +32,8 @@
                     <button type="button" class="btn btn-success">Cadastrar novos jogos</button>
                 </a>
             </div>
-            @if (empty($games))
-                <h3>Não jogos cadastrados ainda</h3>
+            @if ($games->isEmpty())
+                <h3>Não há jogos cadastrados ainda</h3>
             @else
                 @foreach ($games as $game)
                 <div class="card mt-3">
@@ -41,7 +41,7 @@
                         <h2> {{ $game->game_title }}</h2>
                         <p>Dsenvolvedora: {{$game->developer}}</p>
                         <p>Distribuidora: {{$game->distributor}}</p>
-                        @if(!is_null($game->plataforms))
+                        @if(!$game->plataforms->isEmpty())
                             <h5>Disponivel nas seguintes plataformas:</h5>
                             <div class="col-4">
                                 </ul class="col-3">

@@ -32,8 +32,8 @@
                     <button type="button" class="btn btn-success">Cadastrar novas plataformas</button>
                 </a>
             </div>
-            @if (empty($plataforms))
-                <h3>Não existe plataformas</h3>
+            @if ($plataforms->isEmpty())
+                <h3>Não há plataformas cadastradas ainda</h3>
             @else
                 @foreach ($plataforms as $plataform)
                 <div class="card mt-3">
