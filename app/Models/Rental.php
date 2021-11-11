@@ -28,4 +28,14 @@ class Rental extends Model
     {
         return $this->belongsToMany(Game::class, 'rental_games', 'rental_id', 'game_id');
     }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class, 'rental_id');
+    }
+
+    public function adress()
+    {
+        return $this->hasOne(Adress::class, 'adress_id');
+    }
 }
