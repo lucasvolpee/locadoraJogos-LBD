@@ -17,6 +17,10 @@ use App\Models\Game;
 |
 */
 
+Route::get('/', function() {
+    return redirect('/games');
+});
+
 //Games
 Route::get('/games', [GameController::class, 'index']);
 
